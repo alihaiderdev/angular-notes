@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PracticeComponent } from './components/practice/practice.component';
 import { PipesComponent } from './components/pipes/pipes.component';
 import { PostsComponent } from './components/posts/posts.component';
@@ -8,16 +9,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: TodosComponent, pathMatch: 'full' },
-  { path: 'about', component: AboutComponent, pathMatch: 'full' },
-  { path: 'photos', component: PhotosComponent, pathMatch: 'full' },
-  { path: 'posts', component: PostsComponent, pathMatch: 'full' },
-  { path: 'pipes', component: PipesComponent, pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent },
+  // defual route
   {
-    path: 'practice-playground',
-    component: PracticeComponent,
+    path: '',
+    component: TodosComponent,
+    // redirectTo: '/practice-playground',
+    // pathMatch: 'prefix',
     pathMatch: 'full',
   },
+  { path: 'about', component: AboutComponent },
+  { path: 'photos', component: PhotosComponent },
+  { path: 'posts', component: PostsComponent },
+  { path: 'pipes', component: PipesComponent },
+  { path: 'practice-playground', component: PracticeComponent },
+  // Wildcard route for a 404 page
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -26,6 +33,14 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
+export const routingComponents = [
+  PracticeComponent,
+  PipesComponent,
+  PostsComponent,
+  PhotosComponent,
+  AboutComponent,
+  TodosComponent,
+];
 // const routes: Routes = [
 //   { path: '', redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
 //   { path: 'first-component', component: FirstComponent },

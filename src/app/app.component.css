@@ -4,3 +4,12 @@
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
 } */
+.active {
+  color: #000 !important;
+  font-weight: 500;
+  background-color: rgb(168, 252, 255);
+  border-radius: 5px;
+}
+.navbar-nav li {
+  margin: 0 0.5rem;
+}

@@ -5,15 +5,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   styles: [``],
   selector: 'app-photos',
+  // templateUrl: './photos.component.html',
   template: `
-    <div
-      *ngFor="let people of peoples; index as i"
-      style="  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  background-color: #2196F3;
-  padding: 10px; "
-    >
-      <img [src]="people.image" [alt]="people.name" style="width: 100%;" />
+    <div class="row g-3">
+      <div
+        class="col-12 col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let people of peoples; index as i"
+      >
+        <img
+          [src]="people.image"
+          [alt]="people.name"
+          style="width: 100%; object-fit:cover;"
+          loading="lazy"
+        />
+      </div>
     </div>
   `,
 })
@@ -23,6 +28,6 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit(): void {
     this.peoples = this._fakeDataGeneratorService.generateRandomPeoples();
-    console.log(this.peoples, 'peoples');
+    // console.log(this.peoples, 'peoples');
   }
 }

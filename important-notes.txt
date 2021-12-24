@@ -35,6 +35,10 @@ Pipes in Angular:
             An impure pipe is called for every change detection cycle in Angular regardless of the change in the input fields. Multiple pipe instances are created for these pipes.
 
 
+
+
+useful shorthand commands for angular cli 
+    -it for inline template, -is for inline style while creating a component using ng g c component_name -it or -is
 { sno: '1', title: 'titel1', description: 'description1', active: true },
 { sno: '2', title: 'titel2', description: 'description2', active: true },
 { sno: '3', title: 'titel3', description: 'description3', active: true },

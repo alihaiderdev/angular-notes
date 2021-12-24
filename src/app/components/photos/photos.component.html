@@ -1,0 +1,13 @@
+<div class="row g-3">
+  <div
+    class="col-12 col-sm-6 col-md-4 col-lg-3"
+    *ngFor="let people of peoples; index as i"
+  >
+    <img
+      [src]="people?.image"
+      [alt]="people?.name"
+      style="width: 100%; object-fit: cover"
+      loading="lazy"
+    />
+  </div>
+</div>

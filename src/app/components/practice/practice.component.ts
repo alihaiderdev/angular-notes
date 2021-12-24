@@ -325,11 +325,15 @@ import { Component, OnInit } from '@angular/core';
       with Angular Applications
     </p>
 
-    <!-- <ul style="margin: 0;" *ngFor="let post of posts; index as i">
-      <li>
-        {{ post.userId }} - {{ post.id }} - {{ post.title }} - {{ post.body }}
-      </li>
-    </ul> --> `,
+    <h1>Wildcard Route and Redirecting Routes</h1>
+    <p>
+      A better way to handler invalid or not existing URL's in application is to
+      using wildcard route and show 404 page not found page or something like
+      that <br />
+      the Wildcard route should always be the last route in the routes array
+    </p>
+
+    <h1>Route Parameters</h1>`,
 })
 export class PracticeComponent implements OnInit {
   // Interpolation code
@@ -430,4 +434,6 @@ export class PracticeComponent implements OnInit {
       .getEmployees()
       .subscribe((data) => (this.employees = data));
   }
+
+  // Wildcard Route and Redirecting Routes Code
 }
