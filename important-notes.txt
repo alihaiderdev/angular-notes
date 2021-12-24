@@ -1,0 +1,40 @@
+Directives in Angular: 
+    There are 3 types of Directives
+    1. built-in attribute Directives:
+        ngClass, ngStyle, ngModel
+    2. built-in structure Directives:
+        ngIf, ngFor, ngSwitch
+    3. component Directives
+
+
+Pipes in Angular: 
+    Pipes are simple functions designed to accept an input value, process and return a transformed value in a more technical understanding.
+    
+    key features of Pipes.
+        Pipes are defined using the pipe (|) symbol.
+        Pipes can be chained with other pipes.
+        Pipes can be provided with arguments by using the colon (:) sign
+
+    Built-in pipes in Angular.
+        DatePipe: Formats a date value
+        UpperCasePipe: Transforms text to upper case 
+        LowerCasePipe: Transforms text to lower case
+        CurrencyPipe: Transforms a number to currency string
+        DecimalPipe: Transforms a number into a string with a decimal point
+        PercentPipe: Transforms a number to a percentage string
+        and these are the remaining built-in pipes in Angular
+        JsonPipe
+        SlicePipe
+        AsyncPipe
+    
+    Create custom pipes in Angular.
+        Pure and impure pipes:
+        Pure pipes:
+            The pipe does not use any internal state and the output remains the same as long as the parameters passed remain the same. Angular calls the pipe only when it detects a change in the parameters being passed.
+        Impure pipes:
+            An impure pipe is called for every change detection cycle in Angular regardless of the change in the input fields. Multiple pipe instances are created for these pipes.
+
+
+{ sno: '1', title: 'titel1', description: 'description1', active: true },
+{ sno: '2', title: 'titel2', description: 'description2', active: true },
+{ sno: '3', title: 'titel3', description: 'description3', active: true },

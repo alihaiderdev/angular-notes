@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Ali Haider",
+        "age": 23
+    },
+    {
+        "id": 2,
+        "name": "Arfeen",
+        "age": 25
+    },
+    {
+        "id": 3,
+        "name": "Arsalan",
+        "age": 26
+    },
+    {
+        "id": 4,
+        "name": "Kulsoom",
+        "age": 27
+    },
+    {
+        "id": 5,
+        "name": "Zohaib",
+        "age": 24
+    },
+    {
+        "id": 6,
+        "name": "Talha",
+        "age": 19
+    },
+    {
+        "id": 7,
+        "name": "Tabish",
+        "age": 25
+    },
+    {
+        "id": 8,
+        "name": "Raza",
+        "age": 27
+    },
+    {
+        "id": 9,
+        "name": "Usama",
+        "age": 28
+    }
+]

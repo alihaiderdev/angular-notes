@@ -1,0 +1,18 @@
+<h6>Date: {{ todayDate }}</h6>
+<h6>Date: {{ todayDate | date }}</h6>
+<h6>Date: {{ todayDate | date | uppercase }}</h6>
+<h6>Date: {{ todayDate | date | lowercase }}</h6>
+<h6>Date: {{ todayDate | date: "short" | lowercase }}</h6>
+<h6>Name: {{ name | uppercase }}</h6>
+<h6>Name: {{ name | reverseString }}</h6>
+<h6>Name: {{ name | lowercase }}</h6>
+<h6>Name: {{ name | slice: 6 }}</h6>
+<h6>Number: {{ num | sqrt }}</h6>
+<h6>Number: {{ num | square }}</h6>
+<h6>
+  String:
+  {{
+    "lorem ipsum dolor sit amet consectetur adipisicing elit. quam doloribus quas laboriosam eos expedita sit dolorem eaque veniam laborum, ducimus aspernatur quaerat assumenda et beatae molestiae odit odio magnam. Molestias."
+      | capitalizeFirstLetter
+  }}
+</h6>

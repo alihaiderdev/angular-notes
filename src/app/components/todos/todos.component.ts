@@ -7,10 +7,9 @@ import { Todo } from './../../Todo';
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent implements OnInit {
+  name = 'Ali Haider';
+  message = '';
   todos: Todo[];
-  // { sno: '1', title: 'titel1', description: 'description1', active: true },
-  // { sno: '2', title: 'titel2', description: 'description2', active: true },
-  // { sno: '3', title: 'titel3', description: 'description3', active: true },
   localItem: string | null;
   constructor() {
     this.localItem = localStorage.getItem('todos');

@@ -1,3 +1,4 @@
+<h2 class="text-center">All todos by CWH</h2>
 <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
 <!-- <h4 *ngIf="todos.length > 0">Your todos</h4> -->
 <h4 *ngIf="this.todos.length === 0; else elseBlock">
@@ -5,8 +6,25 @@
 </h4>
 <ng-template #elseBlock>
   <div *ngFor="let todo of todos; index as i">
+    <!-- <div
+      class="app-todo-item"
+      [todo]="todo"
+      [i]="i"
+      (todoDelete)="deleteTodo($event)"
+      (todoToggle)="toggleTodo($event)"
+      ></div> -->
+    <!-- <div
+      app-todo-item
+      [todo]="todo"
+      [i]="i"
+      (todoDelete)="deleteTodo($event)"
+      (todoToggle)="toggleTodo($event)"
+    ></div> -->
+    <h3>{{ message }}</h3>
     <app-todo-item
       [todo]="todo"
+      [parentData]="name"
+      (childEvent)="message = $event"
       [i]="i"
       (todoDelete)="deleteTodo($event)"
       (todoToggle)="toggleTodo($event)"
