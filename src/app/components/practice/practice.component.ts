@@ -333,7 +333,14 @@ import { Component, OnInit } from '@angular/core';
       the Wildcard route should always be the last route in the routes array
     </p>
 
-    <h1>Route Parameters</h1>`,
+    <h1>Relative Navigation</h1>
+    <p>
+      path that is started with / or slash is called absolute paths<br />
+      the drawback of absolute path is if we change a route path to some new or
+      other path then we not only change in routing module file but also could
+      change its all occurrences in all files <br />
+      to resolve this issue we use relative navigation
+    </p> `,
 })
 export class PracticeComponent implements OnInit {
   // Interpolation code

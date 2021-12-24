@@ -14,6 +14,9 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PostComponent } from './components/post/post.component';
+import { PostTitleComponent } from './components/post-title/post-title.component';
+import { PostBodyComponent } from './components/post-body/post-body.component';
 
 // import { TodosComponent } from './components/todos/todos.component';
 // import { AboutComponent } from './components/about/about.component';
@@ -39,6 +42,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ReverseStringPipe,
     EmployeeDetailComponent,
     PageNotFoundComponent,
+    PostComponent,
+    PostTitleComponent,
+    PostBodyComponent,
   ],
   imports: [
     BrowserModule,

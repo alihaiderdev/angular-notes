@@ -1,3 +1,6 @@
+import { PostBodyComponent } from './components/post-body/post-body.component';
+import { PostTitleComponent } from './components/post-title/post-title.component';
+import { PostComponent } from './components/post/post.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PracticeComponent } from './components/practice/practice.component';
 import { PipesComponent } from './components/pipes/pipes.component';
@@ -10,17 +13,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   // { path: '**', component: PageNotFoundComponent },
+  // redirectTo: '/practice-playground',
+  // pathMatch: 'prefix | full',
   // defual route
-  {
-    path: '',
-    component: TodosComponent,
-    // redirectTo: '/practice-playground',
-    // pathMatch: 'prefix',
-    pathMatch: 'full',
-  },
+  { path: '', component: TodosComponent },
   { path: 'about', component: AboutComponent },
   { path: 'photos', component: PhotosComponent },
   { path: 'posts', component: PostsComponent },
+  // { path: 'posts/:id', component: PostComponent },
+  // implementing child routes in angular
+  {
+    path: 'posts/:id',
+    component: PostComponent,
+    children: [
+      { path: 'title', component: PostTitleComponent },
+      { path: 'body', component: PostBodyComponent },
+    ],
+  },
   { path: 'pipes', component: PipesComponent },
   { path: 'practice-playground', component: PracticeComponent },
   // Wildcard route for a 404 page
