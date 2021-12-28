@@ -1,1 +1,23 @@
-<p>about works!</p>
+<div class="about">
+  <h1 class="text-center">About</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis et
+    suscipit aperiam similique pariatur enim nulla quis aliquam obcaecati,
+    consequatur ab corporis vel illum non debitis harum eum odio.
+  </p>
+  <h2>Named Router Outlet By Nisha Singla</h2>
+  <!-- primary router outlet  -->
+  <!-- <router-outlet></router-outlet> -->
+
+  <!-- named router outlet  -->
+  <!-- <router-outlet name="name_goes_here"></router-outlet> -->
+  <div class="row">
+    <div class="col-md-6">
+      <router-outlet name="map"></router-outlet>
+    </div>
+
+    <div class="col-md-6">
+      <router-outlet name="feeds"></router-outlet>
+    </div>
+  </div>
+</div>

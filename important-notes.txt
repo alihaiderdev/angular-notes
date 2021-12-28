@@ -34,8 +34,26 @@ Pipes in Angular:
         Impure pipes:
             An impure pipe is called for every change detection cycle in Angular regardless of the change in the input fields. Multiple pipe instances are created for these pipes.
 
+    lifecycle hooks:
+        1. ngOnChanges
+        2. ngOnInit
+        3. ngDoCheck
+        8. ngOnDestroy
+
+         the above hooks are the components and directives hooks 
+
+        4. ngAfterContentInit
+        5. ngAfterContentChecked
+        6. ngAfterViewInit
+        7. ngAfterViewChecked
+                 the above hooks are the components only hooks
 
 
+there are 2 types of forms in angular:
+    1- template driven forms
+    2- reactive forms
+
+constructor is the only place where we inject our services 
 
 useful shorthand commands for angular cli 
     -it for inline template, -is for inline style while creating a component using ng g c component_name -it or -is

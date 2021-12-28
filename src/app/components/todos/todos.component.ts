@@ -12,6 +12,7 @@ export class TodosComponent implements OnInit {
   todos: Todo[];
   localItem: string | null;
   constructor() {
+    // console.log('constructor called');
     this.localItem = localStorage.getItem('todos');
     if (this.localItem === null) {
       this.todos = [];
@@ -19,7 +20,30 @@ export class TodosComponent implements OnInit {
     this.todos = JSON.parse(this.localItem || '[]');
   }
 
-  ngOnInit(): void {}
+  // ngOnChanges(): void {
+  //   console.log('ngOnChanges called');
+  // }
+  ngOnInit(): void {
+    // console.log('ngOnInit called');
+  }
+  // ngDoCheck(): void {
+  //   console.log('ngDoCheck called');
+  // }
+  // ngAfterContentInit(): void {
+  //   console.log('ngAfterContentInit called');
+  // }
+  // ngAfterContentChecked(): void {
+  //   console.log('ngAfterContentChecked called');
+  // }
+  // ngAfterViewInit(): void {
+  //   console.log('ngAfterViewInit called');
+  // }
+  // ngAfterViewChecked(): void {
+  //   console.log('ngAfterViewChecked called');
+  // }
+  // ngOnDestroy(): void {
+  //   console.log('ngOnDestroy called');
+  // }
 
   addTodo(todo: Todo) {
     this.todos.push(todo);

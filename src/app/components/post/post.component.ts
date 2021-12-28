@@ -5,10 +5,12 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   selector: 'app-post',
   template: `
     <h1 class="text-center">Post {{ postId }}</h1>
-    <p>
-      <button (click)="showTitle()">Title</button
-      ><button (click)="showBody()">Body</button>
-    </p>
+
+    <ul class="d-flex">
+      <li class="py-2 px-4"><a routerLink="title">Title</a></li>
+      <li class="py-2 px-4"><a routerLink="body">Body</a></li>
+    </ul>
+
     <router-outlet></router-outlet>
 
     <div class="pagination">
@@ -19,6 +21,11 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   `,
   styles: [
     `
+      ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+      }
       .pagination {
         display: flex;
         align-items: center;
@@ -26,6 +33,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
       }
       a {
         cursor: pointer;
+        text-decoration: none;
       }
     `,
   ],
@@ -38,6 +46,9 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     // this.postId = parseInt(this.route.snapshot.paramMap.get('id') as any);
     // see by using the snapShot approach the route is change on click on previous and next button but the UI is not changing
+
+    // console.log('route:', this.route);
+
     this.route.paramMap.subscribe(
       (params: ParamMap) => (this.postId = parseInt(params.get('id') as any))
     );

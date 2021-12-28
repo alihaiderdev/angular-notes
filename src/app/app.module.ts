@@ -1,10 +1,15 @@
+import { ResolveGuard } from './guards/resolve.guard';
+import { UnSavedChangesGuard } from './guards/un-saved-changes.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
 import { EmployeeService } from './services/employee.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SqrtPipe } from './pipes/sqrt.pipe';
 import { SquarePipe } from './pipes/square.pipe';
@@ -17,6 +22,10 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PostComponent } from './components/post/post.component';
 import { PostTitleComponent } from './components/post-title/post-title.component';
 import { PostBodyComponent } from './components/post-body/post-body.component';
+import { NgxsModule } from '@ngxs/store';
+import { LocationComponent } from './components/location/location.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 // import { TodosComponent } from './components/todos/todos.component';
 // import { AboutComponent } from './components/about/about.component';
@@ -45,15 +54,29 @@ import { PostBodyComponent } from './components/post-body/post-body.component';
     PostComponent,
     PostTitleComponent,
     PostBodyComponent,
+    LocationComponent,
+    FeedbackComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    // NgxsModule.forRoot([ZooState], {
+    //   developmentMode: !environment.production,
+    // }),
   ],
-  providers: [EmployeeService],
+  providers: [
+    // EmployeeService,
+    // AuthService,
+    // AuthGuard,
+    // AdminGuard,
+    // UnSavedChangesGuard,
+    // ResolveGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

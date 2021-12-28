@@ -17,13 +17,13 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   ],
   template: ` <ul style="list-style: none">
     <!-- [class.selected]="isSelected(post)" -->
+    <!-- (click)="onSelect(post)" -->
     <li
       [ngClass]="{ selected: isSelected(post) }"
-      (click)="onSelect(post)"
       *ngFor="let post of posts; index as i"
       style="cursor: pointer; margin: 1.2rem 0"
     >
-      <a style="text-decoration: none"
+      <a [routerLink]="['/posts', post.id]"
         >{{ post.userId }} - {{ post.id }} - {{ post.title }} -
         {{ post.body }}</a
       >
@@ -41,16 +41,19 @@ export class PostsComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this._postService.getPosts().subscribe(
-      (data) => {
-        this.posts = data;
-        console.log('posts: ', this.posts);
-      },
-      (error) => {
-        this.errorMessage = error;
-        console.log('error: ', this.errorMessage);
-      }
-    );
+    // this._postService.getPosts().subscribe(
+    //   (data) => {
+    //     this.posts = data;
+    //     console.log('posts: ', this.posts);
+    //   },
+    //   (error) => {
+    //     this.errorMessage = error;
+    //     console.log('error: ', this.errorMessage);
+    //   }
+    // );
+    console.log(this.route, 'route');
+    this.posts = this.route.snapshot.data['data']; // here data is the same key we mentioned in router file
+
     this.route.paramMap.subscribe(
       (params: ParamMap) =>
         (this.selectedId = parseInt(params.get('id') as any))

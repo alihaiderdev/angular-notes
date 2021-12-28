@@ -1,10 +1,12 @@
 <div class="my-3">
+  <ng-content></ng-content>
+
   <h1>{{ "Hello " + name }}</h1>
   <button (click)="fireEvent()">Send Event</button>
 
-  <h5 [ngClass]="{ strike: !todo.active }">
+  <h1 [ngClass]="{ strike: !todo.active }">
     {{ todo.title }}
-  </h5>
+  </h1>
   <p class="mb-2" [ngClass]="{ strike: !todo.active }">
     {{ todo.description }}
   </p>

@@ -19,13 +19,30 @@
           <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active"
+          <!-- for static url this works fine -->
+          <!-- <a class="nav-link" routerLink="/about" routerLinkActive="active"
+            >About</a
+          > -->
+
+          <!-- for dynamic url we use property binding syntax -->
+          <a
+            class="nav-link"
+            [routerLink]="[
+              '/about',
+              { outlets: { map: 'location', feeds: 'feedback' } }
+            ]"
+            routerLinkActive="active"
             >About</a
           >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/photos" routerLinkActive="active"
             >Photos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="add-user" routerLinkActive="active"
+            >Add User</a
           >
         </li>
         <li class="nav-item">

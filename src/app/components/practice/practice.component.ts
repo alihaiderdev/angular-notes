@@ -1,6 +1,14 @@
 import { Employee } from './../../models/employee';
 import { EmployeeService } from './../../services/employee.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { Observable, observable, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-practice',
@@ -340,9 +348,114 @@ import { Component, OnInit } from '@angular/core';
       other path then we not only change in routing module file but also could
       change its all occurrences in all files <br />
       to resolve this issue we use relative navigation
-    </p> `,
+    </p>
+
+    <h1>Promises and observable</h1>
+    <p>
+      1- Promises: promises are eager it means it call as soon as you define it
+      it does not matter someone is there listening / calling to it or not
+      <br />2- promise can emit only single value <br />
+      3- in promises we dont have operators<br />
+      1- Observable: observables are lazy if nobody is there to listen it will
+      not make a call so observable need subscriber if there is at least one
+      subscriber only then observable call <br />
+      2- observable can return multiple values <br />
+      3- observable behaves like an array so we can use operators on the
+      observable object to apply some operation on my data 4. as we subscribe
+      our observable in the same way we can also unsubscribe it but in promise
+      we dont that kind of thing
+    </p>
+
+    <h1>Make protected routes using guards</h1>
+    <p>
+      Angular route guards are interfaces provided by angular which when
+      implemented allow us to control the accessibility of a route based on
+      condition provided in class implementation of that interface.
+    </p>
+    <h4>CanActivate Route Guard</h4>
+    <ol>
+      <li>
+        Route guards are interfaces which tell he router whether or not it
+        should allow navigation to a requested route
+      </li>
+      <li>
+        Guard function can return either a boolean or Observable &lt;boolean&gt;
+        or promise &lt;boolean&gt; which resolve to a boolean at some point of
+        time in the future
+      </li>
+      <li>
+        if all guards return true then navigation will continue and if one of
+        the guard return false navigation will be cancel
+      </li>
+      <h4>In angular we have 5 guards</h4>
+      <ol>
+        <li>CanActivate: checks to see if a user can visit a route</li>
+        <li>
+          CanActivateChild: checks to see if a user can visit a children routes
+        </li>
+        <li>
+          CanDeactivate: checks to see if a user can exit a route (e.g: leave a
+          page without saving its content using this guard route we can show an
+          alert box to user to save the changes before leaving that specific
+          route)
+        </li>
+        <li>
+          Resolve: performs route data retrieval before route activation(e.g: if
+          we want some data before visiting the targeted route, so in that case
+          until the data are not get resolve the route will wait)
+        </li>
+        <li>
+          CanLoad: checks to see if a user can route to a module that lazy
+          loaded
+        </li>
+      </ol>
+    </ol>
+
+    <p>
+      all guards in angular are interfaces that a class can implement <br />
+      CanActivate: Interface that a class can implement to be guard deciding if
+      a route an be activated.if all guards return true , navigation will
+      continue. if any guard returns false, navigation will be cancel
+      <br />we can use this command for creating a guard : ng g guard guardName
+    </p>
+
+    <h1>CanActivateChild Route Guard</h1>
+    <ol>
+      <li>
+        Interface that a class can implement to be a guard deciding if a child
+        route can be activated
+      </li>
+      <li>
+        If all guards return true, navigation will continue. if any guard
+        returns false navigation will be canceled
+      </li>
+    </ol>
+
+    <h1>CanDeactivate guard route</h1>
+    <ol>
+      <li>
+        the angular canDeactivate guard is called, whenever we navigate away
+        from the route before the current component gets deactivated
+      </li>
+      <li>
+        for example: giving a user a confirmation if he leave the page without
+        saving the data ( fill a form and not saving a form )
+      </li>
+    </ol>
+
+    <h1>Resolve route guard</h1>
+    <p>
+      resolve route guard allow us to provide the needed data for a route,
+      before the route is activated <br />
+      <br />
+      when to use? <br />
+      when you want to make sure that data from one or different source is
+      available before the Component loads <br />
+      when the data is critical for the Component view
+    </p>`,
 })
-export class PracticeComponent implements OnInit {
+export class PracticeComponent implements OnInit, OnDestroy, OnChanges {
+  private mySubscription: Subscription;
   // Interpolation code
   fullName = 'Ali Haider';
   siteUrl = window.location.href;
@@ -440,7 +553,85 @@ export class PracticeComponent implements OnInit {
     this.employeeService
       .getEmployees()
       .subscribe((data) => (this.employees = data));
+
+    // Difference between Promises and observable Code by Nisha Singla
+
+    // creating promise
+    const promise = new Promise((resolve, reject) => {
+      // console.log('Promise call');
+      setTimeout(() => {
+        resolve('Promise Working');
+        resolve('Promise Working 1');
+        resolve('Promise Working 2');
+      }, 1000);
+    });
+
+    // console.log({ promise });
+
+    // promise.then((result) => {
+    //   console.log(result);
+    // });
+
+    // creating observable
+    // const observable1 = new Observable((subscribe) => {
+    //   console.log('Observable call');
+    //   setTimeout(() => {
+    //     subscribe.next('Observable working');
+    //     subscribe.next('Observable working 1');
+    //     subscribe.next('Observable working 2');
+    //     subscribe.next('Observable working 3');
+    //     subscribe.next('Observable working 4');
+    //   }, 1000);
+    // });
+
+    // console.log({ observable });
+
+    // observable1.subscribe((result) => {
+    //   console.log(result);
+    // });
+
+    // observable
+    //   .pipe(filter((d) => d === 'Observable working 2'))
+    //   .subscribe((result) => {
+    //     console.log(result);
+    //   });
+
+    const observable = new Observable((subscribe) => {
+      console.log('Observable call');
+      let counter = 0;
+      setInterval(() => {
+        counter++;
+        subscribe.next(counter);
+      }, 1000);
+    });
+
+    // this.mySubscription = observable.subscribe((result) => {
+    //   console.log(`Subscriber count: ${result}`);
+    // });
   }
 
-  // Wildcard Route and Redirecting Routes Code
+  ngOnDestroy(): void {
+    // this.mySubscription.unsubscribe();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    console.log({ changes });
+  }
+
+  // RXJS Angular Interview Questions
+  // Question   no:  1  :-  Whats the full form of RxJs?
+  // Question   no:  2  :- What is the purpose of RxJs?
+  // Question   no:  3  :- What are observables and observers?
+  // Question   no:  4  :- Explain the use of Subscribe with sample code?
+  // Question   no:  5  :- How to unsubscribe in rxJs?
+  // Question   no:  6  :- Explain concept of operators with sample code?
+  // Question   no:  7  :- How to install rxJs?
+  // Question   no:  8  :- Differentiate between promise and RxJs?
+  // Question   no:  9  :- In Angular where have you used Rxjs?
+  // Question   no:  10  :- Which operators have you used from rxJs?
+  // Question   no:  11  :- What is Push/reactive vs Pull/Imperative?
+
+  // Protecting routes with the help of guards Code By Nisha Singla
+  // CanActivate Route Guard
+  // CanActivateChild Route Guard
 }
