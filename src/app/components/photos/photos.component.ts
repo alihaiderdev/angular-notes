@@ -28,6 +28,6 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit(): void {
     this.peoples = this._fakeDataGeneratorService.generateRandomPeoples();
-    console.log(this.peoples, 'peoples');
+    // console.log(this.peoples, 'peoples');
   }
 }

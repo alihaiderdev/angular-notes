@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Employee } from './../../models/employee';
 import { EmployeeService } from './../../services/employee.service';
 import {
@@ -7,8 +8,16 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { Observable, observable, Subscription } from 'rxjs';
+import {
+  Observable,
+  observable,
+  Subject,
+  Subscriber,
+  Subscription,
+  BehaviorSubject,
+} from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
 @Component({
   selector: 'app-practice',
@@ -452,7 +461,125 @@ import { filter } from 'rxjs/operators';
       when you want to make sure that data from one or different source is
       available before the Component loads <br />
       when the data is critical for the Component view
-    </p>`,
+    </p>
+
+    <h1>Featured Module (custom modules)</h1>
+    <p>advantages of Featured Modules</p>
+    <ol>
+      <li>Code maintainability: loosely coupled modules are easy to use</li>
+      <li>Scalability: easy to scale your application</li>
+      <li>Lazy loading: we can load modules on demand</li>
+      <li>Abstraction: show the module as per user role</li>
+    </ol>
+
+    <p>
+      command for generate a module is ng g module module_name <br />
+      root module import browser module where as custom or featured module
+      import common module
+    </p>
+
+    <h1>Lazy loading</h1>
+    <ol>
+      <li>
+        Lazy loading is a technique in angular that allows you to load
+        javascript components asynchronously when a specific route is activated
+      </li>
+      <li>
+        It improves the speed of the application load time by splitting the
+        application into several bundles
+      </li>
+      <li>
+        When the user navigates through the app, the bundles are loaded as
+        required
+      </li>
+    </ol>
+
+    <p>
+      Angular handle lazy loading with the help of featured modules <br />
+      RouterModule.forChild(routes) is for child module routes and
+      RouterModule.forRoot(routes) is for root module routes
+    </p>
+
+    <h1>RxJS Subject</h1>
+    <p>
+      A subject is like an observable, but can multicast to many observers
+      <br />
+      subjects: subject are multicast <br />
+      observables: observables are unicast <br />
+      an observable by default is unicast, unicast means that each Subscribed
+      observer owns an independent execution of observable
+    </p>
+
+    <h1>
+      Forms By (Template Driven Form(TDF) vs Reactive Form or Model Driven
+      Form(MDF)) Nisha Singla
+    </h1>
+    <h4>similarities and differences between TDF and MDF</h4>
+
+    <p>
+      In TDF all logic and validations of forms we written in template or html
+      file (like in angularjs)
+      <br />
+      in TDF relay completely on directives to implement the validations <br />
+      created by Directive useful when we dont have to complex form and lots of
+      validations stuff <br />
+      low scalability <br />
+      asynchronous data flow between the view/template and the model <br />
+      for using TDF we import FormsModule in our app.module file <br />
+      for 2 way data binding in TDF we use ngModel directive <br />
+      mutable data flow (instead of learning a new state it returns the same
+      state with updating value) <br />
+      unit testing is a challenge because of mutable data flow
+    </p>
+
+    <p>
+      created in class component all logic and validations of forms we written
+      in class reactive forms use functions instead of directives to implement
+      validations<br />
+      high scalability <br />
+      synchronous data flow <br />
+      for using reactive forms we import ReactiveFormsModule in our app.module
+      file <br />
+      no 2 way data binding (we dont use ngModel directive) <br />
+      immutable data flow <br />
+      testable because of immutable data flow
+    </p>
+
+    <p>
+      common foundation of TDF and MDF <br />
+      FormControl, FormGroup, FormArray, ControlValueAccessor these all classes
+      are used in both but the way we use it is different
+    </p>
+
+    <p>
+      FormControl: FormControl is a class that enables validations, each
+      instance of this class help to check the values of the field whether it is
+      touched , untouched dirty, pristine etc we can say formControl represent
+      each form element <br />
+      FormGroup: FormGroup class represents a group of controls, can have
+      multiple formControls, it returns true if all controls are validate
+      <br />
+      FormArray: it is similar to formGroup class formArray represents a group
+      of elements, formArray is used to create dynamic controls <br />
+      ControlValueAccessor: creates a bridge between angular FormControl
+      instance and native DOM elements
+    </p>
+
+    <h4>Choose reactive forms when:</h4>
+    <ol>
+      <li>handling complex forms</li>
+      <li>following reactive approach</li>
+      <li>dynamic controls</li>
+      <li>lots of validation / custom validations</li>
+    </ol>
+
+    <h4>Choose TDF when:</h4>
+    <ol>
+      <li>handling simple/basic forms</li>
+      <li>following reactive approach</li>
+      <li>dynamic controls</li>
+      <li>less validations rule</li>
+    </ol> `,
 })
 export class PracticeComponent implements OnInit, OnDestroy, OnChanges {
   private mySubscription: Subscription;
@@ -547,6 +674,7 @@ export class PracticeComponent implements OnInit, OnDestroy, OnChanges {
   employees: Employee[];
 
   constructor(private employeeService: EmployeeService) {}
+
   ngOnInit(): void {
     // here this.employeeService.getEmployees() is return an observable and to use this observable in specific component we need to subcribe it
     // from the observable we get the data asynchronously
@@ -596,18 +724,84 @@ export class PracticeComponent implements OnInit, OnDestroy, OnChanges {
     //     console.log(result);
     //   });
 
-    const observable = new Observable((subscribe) => {
-      console.log('Observable call');
-      let counter = 0;
-      setInterval(() => {
-        counter++;
-        subscribe.next(counter);
-      }, 1000);
-    });
+    // const observable = new Observable((subscribe) => {
+    //   console.log('Observable call');
+    //   let counter = 0;
+    //   setInterval(() => {
+    //     counter++;
+    //     subscribe.next(counter);
+    //   }, 1000);
+    // });
 
     // this.mySubscription = observable.subscribe((result) => {
     //   console.log(`Subscriber count: ${result}`);
     // });
+
+    // RxJS Subject
+    // const observable = new Observable((obj) => obj.next(Math.random()));
+
+    // // subscriber 1
+    // observable.subscribe((v) => console.log(v));
+    // // subscriber 2
+    // observable.subscribe((v) => console.log(v));
+
+    // now while checking the above log values we can say that observable are unicast means everytimes new subscriber come a new execution is created for that
+
+    // const subject = new Subject();
+    // // subscriber 1
+    // subject.subscribe((v) => console.log(v));
+    // // subscriber 2
+    // subject.subscribe((v) => console.log(v));
+    // subject.next(Math.random());
+
+    // and one more point Subject can act like data provider as well as data consumer
+
+    // const data = ajax(`https://jsonplaceholder.typicode.com/users`);
+    // data.subscribe((d) => console.log(d.response));
+    // data.subscribe((d) => console.log(d));
+
+    //  see in this we getting data but problem is that we make more than one request same
+
+    // const subject = new Subject();
+    // const data = ajax(`https://jsonplaceholder.typicode.com/users`);
+    // data.subscribe(subject);
+    // // see now from this approach we only see one http get request for more than 1 Subscriber
+    // subject.subscribe((d) => console.log(d));
+    // subject.subscribe((d) => console.log(d));
+    // subject.subscribe((d) => console.log(d));
+    // subject.subscribe((d) => console.log(d));
+
+    // variant of subjects
+    // BehaviorSubject: A BehaviorSubject holds one value. when it is subscribed it emits the value immediately, a subject does not hold a value
+
+    // Subject
+    // const subject = new Subject();
+    // subject.subscribe((v) => console.log(`Subject Subscriber 1: ${v}`));
+    // subject.next(Math.random());
+
+    // subject.subscribe((v) => console.log(`Subject Subscriber 2: ${v}`));
+    // subject.next(Math.random());
+
+    // BehaviorSubject : passing default value to BehaviorSubject or holds the last emitted value an dBehaviorSubject is the most important one among all 3  variants of subject
+    const behaviorSubject = new BehaviorSubject<number>(12);
+    behaviorSubject.subscribe((v) =>
+      console.log(`BehaviorSubject Subscriber 1: ${v}`)
+    );
+    behaviorSubject.next(2000);
+    behaviorSubject.subscribe((v) =>
+      console.log(`BehaviorSubject Subscriber 2: ${v}`)
+    );
+    behaviorSubject.subscribe((v) =>
+      console.log(`BehaviorSubject Subscriber 3: ${v}`)
+    );
+
+    // behaviorSubject.next(Math.random());
+
+    // ReplaySubject
+    // AsyncSubject
+    // Void subject
+
+    // Operation using interceptor
   }
 
   ngOnDestroy(): void {
@@ -632,6 +826,4 @@ export class PracticeComponent implements OnInit, OnDestroy, OnChanges {
   // Question   no:  11  :- What is Push/reactive vs Pull/Imperative?
 
   // Protecting routes with the help of guards Code By Nisha Singla
-  // CanActivate Route Guard
-  // CanActivateChild Route Guard
 }

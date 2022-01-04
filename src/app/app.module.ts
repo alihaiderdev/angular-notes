@@ -1,3 +1,4 @@
+import { PracticePlaygroundModule } from './featured-modules/practice-playground.module';
 import { ResolveGuard } from './guards/resolve.guard';
 import { UnSavedChangesGuard } from './guards/un-saved-changes.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -26,6 +27,11 @@ import { NgxsModule } from '@ngxs/store';
 import { LocationComponent } from './components/location/location.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { TdfFormComponent } from './components/tdf-form/tdf-form.component';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { ReactiveFormWithValidationsComponent } from './components/reactive-form-with-validations/reactive-form-with-validations.component';
+
+import { MatSliderModule } from '@angular/material/slider';
 
 // import { TodosComponent } from './components/todos/todos.component';
 // import { AboutComponent } from './components/about/about.component';
@@ -33,6 +39,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 // import { PhotosComponent } from './components/photos/photos.component';
 // import { PipesComponent } from './components/pipes/pipes.component';
 // import { PracticeComponent } from './components/practice/practice.component';
+
 @NgModule({
   declarations: [
     // TodosComponent,
@@ -57,6 +64,9 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     LocationComponent,
     FeedbackComponent,
     AddUserComponent,
+    TdfFormComponent,
+    ReactiveFormComponent,
+    ReactiveFormWithValidationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +75,10 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatSliderModule,
+    // normal loading for PracticePlaygroundModule
+    // PracticePlaygroundModule,
+    // lazing loading for PracticePlaygroundModule
     // NgxsModule.forRoot([ZooState], {
     //   developmentMode: !environment.production,
     // }),

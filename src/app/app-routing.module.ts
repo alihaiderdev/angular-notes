@@ -1,3 +1,6 @@
+import { ReactiveFormWithValidationsComponent } from './components/reactive-form-with-validations/reactive-form-with-validations.component';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { TdfFormComponent } from './components/tdf-form/tdf-form.component';
 import { ResolveGuard } from './guards/resolve.guard';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { UnSavedChangesGuard } from './guards/un-saved-changes.guard';
@@ -53,7 +56,26 @@ const routes: Routes = [
     ],
   },
   { path: 'pipes', component: PipesComponent },
+  { path: 'tdf', component: TdfFormComponent },
+  { path: 'reactive', component: ReactiveFormComponent },
+  {
+    path: 'reactive-validations',
+    component: ReactiveFormWithValidationsComponent,
+  },
   { path: 'practice-playground', component: PracticeComponent },
+
+  // {
+  //   path: 'products',
+  //   loadChildren:
+  //     './featured-modules/practice-playground.module#PracticePlaygroundModule',
+  // },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./featured-modules/practice-playground.module').then(
+        (m) => m.PracticePlaygroundModule
+      ),
+  },
   // Wildcard route for a 404 page
   { path: '**', component: PageNotFoundComponent },
 ];

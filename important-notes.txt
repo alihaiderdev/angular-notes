@@ -55,8 +55,18 @@ there are 2 types of forms in angular:
 
 constructor is the only place where we inject our services 
 
+for lazy loading we can use this command: ng g m customers --route customers --module app.module
 useful shorthand commands for angular cli 
     -it for inline template, -is for inline style while creating a component using ng g c component_name -it or -is
 { sno: '1', title: 'titel1', description: 'description1', active: true },
 { sno: '2', title: 'titel2', description: 'description2', active: true },
 { sno: '3', title: 'titel3', description: 'description3', active: true },
+
+
+
+for angular forms learning click on below link 
+https://www.tektutorialshub.com/angular/setvalue-patchvalue-in-angular/
+
+
+command for creating angular project with scss and routing 
+ng new todo-with-authentication --style=scss --routing=true
